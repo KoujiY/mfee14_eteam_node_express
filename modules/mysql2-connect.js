@@ -3,9 +3,9 @@ const mysql = require("mysql2");
 
 // 建立連線資訊
 const pool = mysql.createPool({
-    host: process.env.MY_HOST,
-    user: process.env.MY_USER,
-    password: process.env.MY_PASS,
+    host: 'localhost',
+    user:'test',
+    password:  'T1st@localhost',
     database: process.env.MY_DBNAME,
     port: 3306,
     waitForConnections: true,
@@ -15,3 +15,7 @@ const pool = mysql.createPool({
 // 上方waitForConnections、connectionLimit、queueLimit均為預設值
 
 module.exports = pool.promise(); // 將pool以promoise形式匯出
+
+// host: process.env.MY_HOST,
+// user: process.env.MY_USER,
+// password: process.env.MY_PASS,

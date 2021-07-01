@@ -1,3 +1,4 @@
+//創建node.js的環境的總路徑
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -18,6 +19,10 @@ app.use(express.static(path.join(__dirname, "public")));
 
 const serveIndex = require("serve-index");
 app.use("/", serveIndex("public", { icons: true })); // 加入此行
+
+app.use("/home",require(__dirname+"/routes/home"))
+//所有檔案全部都會經過 中間軟體 /   路由":顯示在網站上 /  路徑:檔案位置
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
