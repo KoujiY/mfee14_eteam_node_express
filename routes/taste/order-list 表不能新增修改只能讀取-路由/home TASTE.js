@@ -1,3 +1,6 @@
+
+//這個code是只有用orders_list查所以資料 ， 因為不能做新增刪除和修改 01
+
 //路由是node網站的框架
 //路由設定 小寫
 const db = require(__dirname + '/../modules/mysql2-connect');
@@ -21,18 +24,20 @@ router.get("/", async (req, res) => {
 
 //新增商品測試 /home/add
 router.get("/add", async (req, res) => {
+  let sql="SELECT * FROM `orders_list`";
+  let[result]=await db.query(sql);
+  //讀取orders_list 全部資料
 
-  const p1 = new Home({
-    //new Home是實體化
-    iName: '嗨',  //商品名稱
-    iDiscr: '嗨嗨嗨嗨', //商品簡介
-    
-  });
-  const obj1 = await p1.save();
-  //await就像是帳號密碼,等待帳號密碼輸入才會執行後面
-  //!!!!await先執行再到async
-  res.json([obj1]);
+  // const p1 = new Home({
+  //   //new Home是實體化
+  //   oListName: "芒果",
+  //   oListPrice: "999",
+  // });
+  // const obj1 = await p1.save();
+  // //await就像是帳號密碼,等待帳號密碼輸入才會執行後面
+  // //!!!!await先執行再到async
 
+  res.json([result]);
 });
 
 module.exports = router;

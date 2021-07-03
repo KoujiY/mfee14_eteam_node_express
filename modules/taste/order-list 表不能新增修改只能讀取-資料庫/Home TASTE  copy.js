@@ -1,3 +1,5 @@
+//01
+
 // const db = require(__dirname + '/../modules/mysql2-connect');
 // //是一個模組把很多複雜的functio n 路由再取funstion的代號
 // // 用sql向dataBass取資料
