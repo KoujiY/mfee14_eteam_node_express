@@ -21,7 +21,7 @@ const serveIndex = require("serve-index");
 app.use("/", serveIndex("public", { icons: true })); // 加入此行
 
 app.use("/home",require(__dirname+"/routes/home"))
-//所有檔案全部都會經過 中間軟體 /   路由":顯示在網站上 /  路徑:檔案位置
+//所有檔案全部都會經過 中間軟體 /   路由":顯示在網站上 /  路徑: /home===/   
 
 
 // catch 404 and forward to error handler
