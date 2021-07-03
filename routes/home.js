@@ -25,7 +25,9 @@ router.get("/add", async (req, res) => {
   const p1 = new Home({
     //new Home是實體化
     iName: '嗨',  //商品名稱
-    iDiscr: '嗨嗨嗨嗨', //商品簡介
+    iDiscr: '嗨嗨嗨xsaxs嗨', //商品簡介
+    iImg: '20210514120999.jpg', //商品簡介
+    
     
   });
   const obj1 = await p1.save();
