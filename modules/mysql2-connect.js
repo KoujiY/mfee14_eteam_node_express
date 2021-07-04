@@ -1,11 +1,13 @@
+
 require("dotenv").config();
+
 const mysql = require("mysql2");
 
 // 建立連線資訊
 const pool = mysql.createPool({
-    host: process.env.MY_HOST,
-    user: process.env.MY_USER,
-    password: process.env.MY_PASS,
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
     database: process.env.MY_DBNAME,
     port: 3306,
     waitForConnections: true,
