@@ -26,7 +26,7 @@
 //     }
 
 // //除純:新增或修改
-// //原本沒有今要使要給它金要使，如果我沒有資料就要新增YYY,不投資料表有主KEY和次要KEY
+// //沒有金鑰匙就是 key是falsely家族，沒有值得狀態才是沒有金鑰匙
 //     async save(){
 //     if (!this.data.oListId) {
 //         let sql = "INSERT INTO `items` SET ?";
