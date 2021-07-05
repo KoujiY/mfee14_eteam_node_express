@@ -22,7 +22,7 @@
 //         };
 //         this.data = { ...defaultData, ...data };
 //         //這只是宣告!!!!
-//         //將class Home裡面的data(初始值)，當使用者填入新資料時會用...data(覆蓋值)去覆蓋 
+//         //將class Home裡面的data(初始值)，當使用者填入新資料時會用...data(覆蓋值)去覆蓋
 //     }
 
 // //除純:新增或修改
@@ -32,13 +32,13 @@
 //         let sql = "INSERT INTO `items` SET ?";
 //         let [result] = await db.query(sql, [this.data]);
 //         //29.把新增的東西+?號傳給RESULT,[]為了是SQL與法一定要用陣列去包他
-//         //inserId是新增的 只要有新增了一份ID他就會丟進去舊的ID 只要有新增就會覆蓋9~18 
+//         //inserId是新增的 只要有新增了一份ID他就會丟進去舊的ID 只要有新增就會覆蓋9~18
 //         if (result.inserId) {
 //             this.data. oListId = result.insertId;
 //             //把RESULT的KEY丟到 this.data. oListId
 //             return this.data;
 //         } else {
-//             return false;//新增失敗情況           
+//             return false;//新增失敗情況
 //         }
 //         //如果 S已經有值就更新
 //     } else {

@@ -3,14 +3,14 @@ const mysql = require("mysql2");
 
 // 建立連線資訊
 const pool = mysql.createPool({
-    host: 'localhost',
-    user:'test',
-    password:  'T1st@localhost',
-    database: process.env.MY_DBNAME,
-    port: 3306,
-    waitForConnections: true,
-    connectionLimit: 10, // 最大連線數
-    queueLimit: 0, // 排隊限制
+  host: "localhost",
+  user: "test",
+  password: "T1st@localhost",
+  database: process.env.MY_DBNAME,
+  port: 3306,
+  waitForConnections: true,
+  connectionLimit: 10, // 最大連線數
+  queueLimit: 0, // 排隊限制
 });
 // 上方waitForConnections、connectionLimit、queueLimit均為預設值
 
