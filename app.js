@@ -18,6 +18,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 
+//這要留嗎?
+// const serveIndex = require("serve-index");
+// app.use("/", serveIndex("public", { icons: true }));
+
+
 app.use("/home",require(__dirname+"/routes/home"))
 //所有檔案全部都會經過 中間軟體 /   路由":顯示在網站上 /  路徑: /home===/   
 
