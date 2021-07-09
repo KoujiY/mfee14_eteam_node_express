@@ -10,6 +10,7 @@ const Home=require(__dirname+"/../modules/Home")
 //dirname是本地端資料夾的位置 絕對路徑
 //路由連  sql向dataBass取資料(他只是取資料) 有路由才有連線 /拿它去連modules
 
+////////////最新商品 ////////////////////
 //取的所有商品+篩選
 router.get("/", async (req, res) => {
   res.json([req.baseUrl, req.url]); //測試noded.js環境
