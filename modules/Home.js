@@ -12,7 +12,7 @@ class Home {
   }
 
   async save() {
-    let sql = "SELECT *   FROM   `items` order by `created_at` desc limit 6";
+    let sql = "SELECT *   FROM   `items` order by `created_at` desc limit 5";
     let [result] = await db.query(sql);
     return result;
   }
