@@ -5,14 +5,14 @@ class Home {
       iId: 0, //商品編號
       iName: "", //商品名稱
       iImg: "[]", //商品圖片
-      iDiscr:"", //商品簡介
+      iDiscr: "", //商品簡介
       iPrice: 0, //商品價格
     };
     this.data = { ...defaultData, ...data };
   }
 
   async save() {
-    let sql = "SELECT *   FROM   `items` order by `created_at` desc limit 5";
+    let sql = "SELECT *   FROM   `items` order by `created_at` desc limit 6";
     let [result] = await db.query(sql);
     return result;
   }
