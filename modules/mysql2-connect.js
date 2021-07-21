@@ -1,18 +1,17 @@
-
 require("dotenv").config();
 
 const mysql = require("mysql2");
 
 // 建立連線資訊
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: process.env.MY_DBNAME,
-    port: 3306,
-    waitForConnections: true,
-    connectionLimit: 10, // 最大連線數
-    queueLimit: 0, // 排隊限制
+  host: process.env.MY_HOST, //localhost
+  user: process.env.MY_USER, //root
+  password: process.env.MY_PASS, //root
+  database: process.env.MY_DBNAME,
+  port: 3306,
+  waitForConnections: true,
+  connectionLimit: 10, // 最大連線數
+  queueLimit: 0, // 排隊限制
 });
 // 上方waitForConnections、connectionLimit、queueLimit均為預設值
 

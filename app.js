@@ -7,19 +7,45 @@ const cors = require('cors');
 
 var app = express();
 
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+// 跨來源資源共用
 app.use(cors());
+
 app.use(logger("dev"));
-app.use(express.json());
+
+// // 若有使用session 或 cookie時
+// const cors = require('cors');
+// var whitelist = ['http://localhost:8080', undefined, 'http://localhost:3000'];
+// var corsOptions = {
+// credentials: true,
+// origin: function (origin, callback) {
+// console.log('origin: '+origin);
+// if (whitelist.indexOf(origin) !== -1) {
+// callback(null, true)
+// } else {
+// callback(new Error('Not allowed by CORS'))
+// }
+// }
+// };
+// app.use(cors(corsOptions));
+
+
+// 傳送POST 檔案
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-const serveIndex = require("serve-index");
-app.use("/", serveIndex("public", { icons: true })); // 加入此行
+// 這兩行會擋住fetch  傳送
+// serve-index 查看靜態網站目錄使用
+// serve-index的功能是將文件夾中文件列表顯示到瀏覽器中
+// const serveIndex = require("serve-index");
+// app.use("/", serveIndex("public", { icons: true })); 
+// 加入此行
 
 
 
