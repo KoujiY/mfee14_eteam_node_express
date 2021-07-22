@@ -66,6 +66,8 @@ router.post("/login", async (req, res) => {
   // 將bcryptjs 後 存在database的密碼解密
   const userslogin = usersloginSql[0];
 
+  
+
   // 比對 bcypt.compare(輸入密碼,hash後的密碼(當下已存在資料庫))
   const result = await bcrypt.compare(req.body.uPwd, userslogin.uPwd);
 
@@ -148,7 +150,7 @@ router.post("/checkUacco", async (req, res) => {
     const uAcco = result[0].uAcco;
     const uName = result[0].uName;
     const uMail = result[0].uMail;
-    const uPwd = "123456";
+    const uPwd = "123456"; 
     const hash = bcrypt.hashSync(`${uPwd}`, 10);
     // 更改database用戶密碼
     const updatePwdSql = "UPDATE `users` SET `uPwd`= ? WHERE `uAcco` = ?";
@@ -245,7 +247,7 @@ router.post("/usersRegister", async (req, res) => {
   // uPwd 加密功能
   // 直接執行方法
   // let {uPwd} = req.body;
-  const hash = bcrypt.hashSync(`${req.body.uPwd}`, 10);
+  const hash =  bcrypt.hashSync(`${req.body.uPwd}`, 10);
 
   // let req.body[uPwd] = hash;
   // 可用postman 看變化
@@ -364,7 +366,43 @@ router.post("/usersConsumptionOrderBy",async(req,res)=>{
 
 })
 
-// 會員消費紀錄  搜尋 取消作業
+// 會員消費紀錄 分頁功能
+
+// 要有的資訊
+// {
+  // 每頁有幾筆
+  // 查看第幾頁
+  // 資料總筆數
+  // 總頁數 = 資料總筆數/每頁有幾筆
+  // 讀取後的資料
+// }
+router.post("/usersConsumptionPage",async(req,res)=>{
+  // return res.json(req.body)
+  let payload = jwt.verify(req.body.token, process.env.TOKEN_SECRET);
+  // return res.json(payload)
+  req.body.uAcco = payload.uAcco;
+  delete req.body.token;
+
+  const page = Number(req.body[0]); //第幾頁
+  // LIMIT ( (第幾頁-1)*每頁幾筆 , 每頁幾筆 )
+  // console.log(page);
+  const pageNum = 5;//每頁幾筆
+  const firstNum = (page-1)*pageNum;//(第幾頁-1)*每頁幾筆
+  
+ 
+
+  const usersConsumption = new UsersConsumption({
+    firstNum,page,pageNum
+  });
+
+  const data = await usersConsumption.pageUsersConsumption(payload.uAcco,firstNum,pageNum);
+
+  res.json(data);
+
+
+})
+
+// 會員消費紀錄  搜尋 (取消作業)
 
 router.post("/usersConsumptionSearch",async(req,res)=>{
   let payload = jwt.verify(req.body.token, process.env.TOKEN_SECRET);
@@ -411,6 +449,31 @@ router.put("/usersDeleteTrack/:iId", async (req, res) => {
 
   res.json(data);
 });
+
+// 會員商品追蹤 分頁 Page
+router.post("/usersTrackPage", async (req, res) => {
+  let payload = jwt.verify(req.body.token, process.env.TOKEN_SECRET);
+  // return res.json(payload)
+  req.body.uId = payload.uId;
+  delete req.body.token;
+
+
+  const page = Number(req.body[0]); //第幾頁
+  // LIMIT ( (第幾頁-1)*每頁幾筆 , 每頁幾筆 )
+  // console.log(page);
+  const pageNum = 5;//每頁幾筆
+  const firstNum = (page-1)*pageNum;//(第幾頁-1)*每頁幾筆
+  
+
+  const usersTrack = new UsersTrack({
+    page,pageNum,firstNum,...req.body.uId
+  });
+
+  const data = await usersTrack.pageUsersTrack(payload.uId,firstNum,pageNum);
+
+  res.json(data);
+});
+
 // 信用卡讀取  (依存在token 的uId)
 router.post("/usersCreditCard", async (req, res) => {
   let payload = jwt.verify(req.body.token, process.env.TOKEN_SECRET);
@@ -461,8 +524,8 @@ router.post("/usersCreditCardAdd", async (req, res) => {
 
   res.json(data);
 });
-// 編輯信用卡(單筆顯示)  少cId  對話框做不出來
-router.post("/usersCreditCardReadSingle/:cId", async (req, res) => {
+// 編輯信用卡(單筆顯示)  
+router.post("/usersCreditCardReadSingle", async (req, res) => {
 
   let payload = jwt.verify(req.body.token, process.env.TOKEN_SECRET);
   // return res.json(req.body)
@@ -479,7 +542,7 @@ router.post("/usersCreditCardReadSingle/:cId", async (req, res) => {
 
   res.json(data);
 });
-// 編輯信用卡 少cId  對話框做不出來
+// 編輯信用卡 
 
 router.put("/usersCreditCardEdit", async (req, res) => {
   // return res.json(req.body.cId)
@@ -566,11 +629,21 @@ router.post("/messageAdd", async (req, res) => {
 
   res.json(data);
 });
-// 點讚功能 將點過讚的uId 新增至uLike欄位
+// 點讚功能 將點過讚的uId 更新uLike欄位 return 1 點過的 更新uLike欄位 return -1 
 router.put("/messagemlike",async(req,res)=>{
-  return res.json(req.body)
+  // return res.json(req.body)
+  let payload = jwt.verify(req.body.token, process.env.TOKEN_SECRET);
+  req.body.uId = payload.uId;
+  delete req.body.token;
 
+  const message = new Message({
+    ...req.body,
+  });
+  const data = await message.usersMlikeMessage(req.body.uId,req.body.mId);
+
+  res.json(data);
 
 })
+// 計算所有數字儲存回 mLike
 
 module.exports = router;

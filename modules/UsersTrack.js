@@ -67,5 +67,17 @@ class UsersTrack {
       return false;
     }
   }
+  // 分頁
+  async pageUsersTrack(uId,firstNum,pageNum){
+
+    const sqlFollowList = "SELECT `followList` FROM `users` WHERE `uId`= ?";
+    const [resultFollowList] = await db.query(sqlFollowList, [uId]);
+    const resultFollowListIid = resultFollowList[0].followList.split(","); // 將string 轉成array
+
+
+    const sql = "SELECT`items`.`iId`,`iImg`,`iName`,`sName`,`iPrice`FROM `items`JOIN `specification`ON `items`.`iId` = `specification`.`iId`WHERE `items`.`iId`IN(?) LIMIT ? , ? "
+    const [result] = await db.query(sql,[resultFollowListIid.slice(0),firstNum,pageNum])
+    return result
+  }
 }
 module.exports = UsersTrack;

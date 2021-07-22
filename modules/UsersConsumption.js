@@ -93,6 +93,16 @@ class UsersConsumption {
     }
     const [result] = await db.query(sql, [uAcco]);
   }
+  // 頁數
+  async pageUsersConsumption(uAcco,firstNum,pageNum){
+    const sql = "SELECT `orders`.`oId`,`iImg`,`oListName`,`sName`,`oQty`,`iPrice`,`oListPrice`,`oDate`FROM `items`JOIN `orders_list`ON `items`.`iId` = `orders_list`.`iId`JOIN `orders`ON `orders_list`.`oId` = `orders`.`oId`JOIN`specification`ON`items`.`iId`=`specification`.`iId`WHERE `orders`.uAcco = ? LIMIT ? , ?";
+    const[result]=await db.query(sql,[uAcco,firstNum,pageNum])
+
+    for (let i = 0; i < result.length; i++) {
+      result[i].oDate = moment(result[i].oDate).format("YYYY-MM-DD");
+    }
+    return result
+  }
 }
 
 module.exports = UsersConsumption;

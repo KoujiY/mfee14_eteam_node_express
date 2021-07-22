@@ -4,9 +4,9 @@ const mysql = require("mysql2");
 
 // 建立連線資訊
 const pool = mysql.createPool({
-  host: process.env.MY_HOST, //localhost
-  user: process.env.MY_USER, //root
-  password: process.env.MY_PASS, //root
+  host: "localhost", //  //process.env.MY_HOST
+  user: "root", // //process.env.MY_USER
+  password: "root", //  //process.env.MY_PASS
   database: process.env.MY_DBNAME,
   port: 3306,
   waitForConnections: true,
