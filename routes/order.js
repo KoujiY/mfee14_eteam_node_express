@@ -1,3 +1,4 @@
+//sql語法有錯
 const express = require("express");
 const db = require(__dirname + "/../modules/mysql2-connect");
 const router = express.Router();
