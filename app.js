@@ -83,6 +83,7 @@ app.use(
 //   )
 app.use('/cart', require(__dirname + '/routes/cart.js'));
 app.use('/order', require(__dirname + '/routes/order.js'));
+// app.use('/order-1', require(__dirname + '/routes/order-1.js'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

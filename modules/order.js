@@ -1,13 +1,18 @@
+//test
 class Order {
-  constructor(uAcco, subtotal, address, name,phone,email,iId,) {
-    this.uAcco = ''
-    step2.subtotal =subtotal
-    step2.address = city+township+street
-    step2.name = name
-    step2.phone = phone
-    step2.email = email
-    step3.creditNum=creditNum
-    
+  constructor(uAcco, subtotal, cNum, oAddress, oName, oPhone, oMail, iId,oQty,oListprice,oListName) {
+    this.uAcco = 0;
+    data.order.oPrice = oPrice;
+    data.order.oAddress = oAddress;
+    data.order.oName = oName;
+    data.order.oPhone = oPhone;
+    data.order.oMail = oMail;
+    data.order.cNum = cNum;
+    data.orderList.iId = iId;
+    data.orderList.oListName = oListName;
+    data.orderList.oListprice = oListprice;
+    data.orderList.oQty = oQty;
+
     // step1.iId = iId
     // step1.name = name
     // step1.category = category
@@ -20,16 +25,14 @@ class Order {
   //尚未取得會員id
   addOrderSQL() {
     let sql = `INSERT INTO orders( uAcco, oPrice, cNum, oAddress,  oName, oPhone, oMail, oDate) \
-                   VALUES('${this.uAcco}', '${step2.subtotal}',${step3.creditNum}', '${step2.address}','${step2.name}','${step2.phone}','${step2.email}',  NOW())`
-                   
-    let sql2 = `INSERT INTO orders_list(oListId, oId, oListName, oListPrice, oQty)\
-                   VALUES('${this.iId}', '${this.name}', '${this.category}','${this.iPrice}','${this.iCount}', NOW())`
-    
-                   return (sql,sql2)
-  }
+                   VALUES('${this.uAcco}', '${ data.order.oPrice}',${data.order.cNum}', '${oAddress}','${data.order.oName}','${ data.order.oPhone}','${data.order.oMail}',  NOW())`;
 
-  
+    let sql2 = `INSERT INTO orders_list(oListId, oId, oListName, oListPrice, oQty)\
+                   VALUES('${ data.orderList.iId}', '${data.orderList.oListName}', '${ data.orderList.oListprice}','${data.orderList.oQty}'`;
+
+    return sql, sql2;
+  }
 }
 
 //export default Order
-module.exports = Order
+module.exports = Order;
