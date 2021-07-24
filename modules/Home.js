@@ -28,7 +28,7 @@ class Home {
   //     iName: "", //商品名稱
   //     iImg: "[]", //商品圖片
   //     iDiscr: "", //商品簡介
-  //     iPrice: 0, //商品價格
+  //     iPrice: 0, //商品價格1
   //   };
   //   this.dat = { ...defaultDat, ...dat };
   // }

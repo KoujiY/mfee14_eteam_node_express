@@ -14,4 +14,4 @@ const pool = mysql.createPool({
 });
 // 上方waitForConnections、connectionLimit、queueLimit均為預設值
 
-module.exports = pool.promise(); // 將pool以promoise形式匯出
+module.exports = pool.promise(); // 將pool以promoise形式匯出i 

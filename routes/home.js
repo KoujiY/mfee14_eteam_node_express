@@ -24,7 +24,7 @@ router.get("/read", async (req, res) => {
     //new Home是實體化
     // iName: '嗨',  //商品名稱
     // iDiscr: '嗨嗨嗨xsaxs嗨', //商品簡介
-    // iImg: '20210514120999.jpg', //商品簡介
+    // iImg: '20210514120999.jpg', //商品簡介1
   });
   const obj1 = await p1.save();
   //await就像是帳號密碼,等待帳號密碼輸入才會執行後面
