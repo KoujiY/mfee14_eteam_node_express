@@ -1,6 +1,6 @@
 //  引入上傳檔案用的 multer
 const multer = require("multer");
-
+const {v4: uuidv4} = require('uuid');
 const moment = require("moment-timezone");
 
 // 將許可的文件類型作成一個Obj
