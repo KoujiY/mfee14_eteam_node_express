@@ -25,7 +25,7 @@ class UsersTrack {
       // return resultFollowListIid;
       // ? 內若被當成一個字串，則只會顯示一筆資料 ('1,2,3,4,5,6')
       const sqlItem =
-        "SELECT`items`.`iId`,`iImg`,`iName`,`sName`,`iPrice`FROM `items`JOIN `specification`ON `items`.`iId` = `specification`.`iId`WHERE `items`.`iId`IN(?)";
+        "SELECT`items`.`iId`,`iImg`,`iName`,`sName`,`iPrice`FROM `items`JOIN `specification`ON `items`.`iId` = `specification`.`iId`WHERE `items`.`iId`IN(?)LIMIT 0 , 5 ";
       // const sqlItem =
       //   "SELECT `iImg`,`iName`,`sName`,`iPrice`FROM `items`JOIN `specification`ON `items`.`iId` = `specification`.`iId`WHERE `items`.`iId`= ?";
       const [result] = await db.query(sqlItem, [resultFollowListIid.slice(0)]); // 為了去除''
