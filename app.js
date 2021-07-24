@@ -7,20 +7,13 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var session = require('express-session')
-const cors = require('cors');
 const Mysqlstore = require("express-mysql-session")(session);
 const db = require(__dirname + '/modules/mysql2-connect');
 const sessionStore = new Mysqlstore({}, db);
-
-// 引用所需模組
-const db = require(__dirname + "/modules/mysql2-connect");
-const cors = require("cors");
+const cors = require('cors');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
-const session = require("express-session");
-const Mysqlstore = require("express-mysql-session")(session);
-const sessionStore = new Mysqlstore({}, db);
 
 var app = express();
 
