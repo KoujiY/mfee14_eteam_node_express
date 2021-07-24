@@ -1,4 +1,6 @@
 const db = require(__dirname + "/../modules/mysql2-connect");
+
+///////////////最新商品
 class Home {
   constructor(data) {
     let defaultData = {
@@ -16,7 +18,30 @@ class Home {
     let [result] = await db.query(sql);
     return result;
   }
+
+/////////////////////////////////////////////////////////////////////////////
+
+///////////////一般商品
+
+  // constructor(dat) {
+  //   let defaultDat = {
+  //     iName: "", //商品名稱
+  //     iImg: "[]", //商品圖片
+  //     iDiscr: "", //商品簡介
+  //     iPrice: 0, //商品價格1
+  //   };
+  //   this.dat = { ...defaultDat, ...dat };
+  // }
+
+  async general() {
+    let sq = "SELECT `iName`,`iImg`,`iDiscr`,`iPrice` FROM `items`";
+    let [resul] = await db.query(sq);
+    return resul;
+  }
+
 }
+
+
 
 module.exports = Home;
 //單純輸出home

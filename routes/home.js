@@ -10,21 +10,21 @@ const Home=require(__dirname+"/../modules/Home")
 //dirname是本地端資料夾的位置 絕對路徑
 //路由連  sql向dataBass取資料(他只是取資料) 有路由才有連線 /拿它去連modules
 
-//取的所有商品+篩選
-router.get("/", async (req, res) => {
-  res.json([req.baseUrl, req.url]); //測試noded.js環境
-}); //baseUrl=跟目錄   //req.url=目前目錄
-//後端通過路由來拿取前端的req資料，之後在res回去
-//接收前端來的req然後在在responce回去
+// //取的所有商品+篩選
+// router.get("/", async (req, res) => {
+//   res.json([req.baseUrl, req.url]); //測試noded.js環境
+// }); //baseUrl=跟目錄   //req.url=目前目錄
+// //後端通過路由來拿取前端的req資料，之後在res回去
+// //接收前端來的req然後在在responce回去
 
-//新增商品測試 /home/add
+//最新商品測試 /home/add
 router.get("/read", async (req, res) => {
 
   const p1 = new Home({
     //new Home是實體化
     // iName: '嗨',  //商品名稱
     // iDiscr: '嗨嗨嗨xsaxs嗨', //商品簡介
-    // iImg: '20210514120999.jpg', //商品簡介
+    // iImg: '20210514120999.jpg', //商品簡介1
   });
   const obj1 = await p1.save();
   //await就像是帳號密碼,等待帳號密碼輸入才會執行後面
@@ -32,6 +32,27 @@ router.get("/read", async (req, res) => {
   res.json(obj1);
 
 });
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//一般商品篩選測試
+
+router.get("/general", async (req, res) => {
+
+  const p1 = new Home({
+
+  });
+  const obj2 = await p1.general();
+
+  res.json(obj2);
+
+});
+
+
+
+
 
 module.exports = router;
 //單傳輸出這ㄍ
