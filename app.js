@@ -6,7 +6,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var session = require('express-session')
+const session = require('express-session')
 const Mysqlstore = require("express-mysql-session")(session);
 const db = require(__dirname + '/modules/mysql2-connect');
 const sessionStore = new Mysqlstore({}, db);
@@ -15,6 +15,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 
+// 建立web server物件
 var app = express();
 
 // 跨來源資源共用
@@ -48,10 +49,10 @@ app.use(
   })
 );
 
-// view engine setup
+// 註冊樣板引擎
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-
+// 預設middleware
 app.use(logger("dev"));
 
 // 傳送POST 檔案
@@ -60,6 +61,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+
+// others middleware
+app.use("/coffeeIntroduce", require(__dirname + "/routes/coffeeIntroduce"));
+app.use("/partners", require(__dirname + "/routes/partners"));
+app.use("/shopMap", require(__dirname + "/routes/shopMap"));  
+  
 // items  middleware
 app.use("/items", require(__dirname + "/routes/items"));
 
@@ -73,7 +80,7 @@ app.use("/home",require(__dirname+"/routes/home"))
 app.use('/cart', require(__dirname + '/routes/cart.js'));
 app.use('/order', require(__dirname + '/routes/order.js'));
 
-// catch 404 and forward to error handler
+// 捕捉404錯誤訊息並引導至error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });
