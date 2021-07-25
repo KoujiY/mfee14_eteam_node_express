@@ -10,7 +10,7 @@ const pool = mysql.createPool({
   port: 3306,
   waitForConnections: true,
   connectionLimit: 10, // 最大連線數
-  queueLimit: 0, // 排隊限制
+  queueLimit: 0, // 排隊限制1
 });
 // 上方waitForConnections、connectionLimit、queueLimit均為預設值
 

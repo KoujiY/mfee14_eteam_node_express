@@ -45,5 +45,5 @@ class Home {
 
 module.exports = Home;
 //單純輸出home
-//匯出home
+//12匯出home
 //33行 db連線  db有含promiss  .query取資料  sql 我要的data  用 array接值  (跟mysql取資料得到的結果 為陣列)
