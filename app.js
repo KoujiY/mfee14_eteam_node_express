@@ -20,17 +20,17 @@ var app = express();
 
 // 跨來源資源共用
 // 若有使用session 或 cookie時
-var whitelist = ['http://localhost:7000', undefined, 'http://localhost:3000'];
+var whitelist = ['http://localhost:7000', 'http://localhost:3000','http://220.135.31.123:7000/','http://220.135.31.123:3000/'];
 var corsOptions = {
     credentials: true,
-    origin: function (origin, callback) {
-        console.log('origin:'+origin);
-        if (whitelist.indexOf(origin) !== -1) {
-            callback(null, true)
-        } else {
-            callback(new Error('Not allowed by CORS'))
-        }
-    }
+    // origin: function (origin, callback) {
+    //     console.log('origin:'+origin);
+    //     if (whitelist.indexOf(origin) !== -1) {
+    //         callback(null, true)
+    //     } else {
+    //         callback(new Error('Not allowed by CORS'))
+    //     }
+    // }
 };
 
 // cors middleware
