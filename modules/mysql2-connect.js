@@ -3,10 +3,10 @@ const mysql = require("mysql2");
 
 // 建立連線資訊
 const pool = mysql.createPool({
-  host: process.env.MY_HOST,
-  user: process.env.MY_USER,
-  password: process.env.MY_PASS,
-  database: process.env.MY_DBNAME,
+  host:'localhost',
+  user: 'test',
+  password:'T1st@localhost',
+  database: 'mfee14_eteam_testserver',
   port: 3306,
   waitForConnections: true,
   connectionLimit: 10, // 最大連線數
