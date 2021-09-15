@@ -3,7 +3,7 @@
 const db = require(__dirname + '/../modules/mysql2-connect');
 const express = require("express");
 const router = express.Router(); //他是一個function
-//用express的框架裡的router，express裡面的路由工具 
+//用express的框由架裡的router，express裡面的路工具 
 
 const Home=require(__dirname+"/../modules/Home")
 // 引入modules/home裡的sql方法

@@ -6,7 +6,7 @@ const pool = mysql.createPool({
   host:'localhost',
   user: 'test',
   password:'T1st@localhost',
-  database: 'mfee14_eteam_testserver',
+  database: 'mfee14_eteam_project',
   port: 3306,
   waitForConnections: true,
   connectionLimit: 10, // 最大連線數
