@@ -7,7 +7,6 @@ class Home {
       iId: 0, //商品編號
       iName: "", //商品名稱
       iImg: "[]", //商品圖片
-      iDiscr: "", //商品簡介
       iPrice: 0, //商品價格
     };
     this.data = { ...defaultData, ...data };
